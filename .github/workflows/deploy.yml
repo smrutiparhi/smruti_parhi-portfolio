@@ -32,6 +32,8 @@ jobs:
         
       - name: Build
         run: npm run build
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -51,6 +53,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          enablement: true

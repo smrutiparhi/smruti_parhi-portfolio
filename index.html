@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smruti Ranjan Parhi | Digital Architect & Software Developer</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Smruti Ranjan Parhi - Computer Science Student & Software Developer specializing in AI, Full-Stack Development, and intelligent systems. View portfolio, projects, and expertise.">
+  <meta name="keywords" content="Smruti Ranjan Parhi, Software Developer, AI Developer, Full Stack Developer, React, Python, Portfolio, Computer Science">
+  <meta name="author" content="Smruti Ranjan Parhi">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Smruti Ranjan Parhi | Digital Architect">
+  <meta property="og:description" content="Computer Science Student & Software Developer crafting intelligent systems and human-centric experiences.">
+  <meta property="og:image" content="/og-image.jpg">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smruti Ranjan Parhi | Digital Architect">
+  <meta name="twitter:description" content="Computer Science Student & Software Developer specializing in AI and Full-Stack Development.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='%236366f1'>S</text></svg>">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #6366f1;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #020617;
+      cursor: default;
+    }
+    
+    section {
+      scroll-margin-top: 100px;
+    }
+    .font-outfit {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    ::selection {
+      background-color: var(--accent);
+      color: white;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .text-gradient {
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* Custom Float Animation */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) translateX(0px);
+      }
+      25% {
+        transform: translateY(-20px) translateX(10px);
+      }
+      50% {
+        transform: translateY(0px) translateX(20px);
+      }
+      75% {
+        transform: translateY(20px) translateX(10px);
+      }
+    }
+    
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    
+    #loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.95);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(0.95);
+        opacity: 1;
+      }
+    }
+    
+    /* Scroll Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(to right, #6366f1, #8b5cf6, #ec4899);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
+    
+    /* Fade In Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    /* Toast Slide In Animation */
+    @keyframes slide-in {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    .animate-slide-in {
+      animation: slide-in 0.3s ease-out forwards;
+    }
+    
+    /* Back to Top Button */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 3rem;
+      height: 3rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 50;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    }
+    
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    #back-to-top:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+    }
+    
+    @media (max-width: 768px) {
+      #back-to-top {
+        bottom: 6rem;
+        left: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+    
+    /* Logo Wave Animation */
+    @keyframes wave {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(2deg);
+      }
+    }
+    
+    @keyframes shine {
+      0% {
+        background-position: -200% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
+    }
+    
+    /* Print Styles */
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      header, footer, #contact, #projects, #skills, .hero-bg, .no-print, .chat-widget {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .resume-container {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: black !important;
+      }
+      .resume-container * {
+        color: black !important;
+        border-color: #eee !important;
+      }
+    }
+    .print-only {
+      display: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="text-slate-200">
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="text-center">
+      <div class="w-20 h-20 mx-auto mb-6 relative">
+        <div class="absolute inset-0 border-4 border-indigo-500/30 rounded-full"></div>
+        <div class="absolute inset-0 border-4 border-transparent border-t-indigo-500 rounded-full animate-spin"></div>
+      </div>
+      <div class="text-2xl font-black font-outfit text-white mb-2" style="animation: pulse-ring 2s ease-in-out infinite">SRP</div>
+      <div class="text-xs text-slate-500 uppercase tracking-widest">Loading Experience...</div>
+    </div>
+  </div>
+  
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" style="width: 0%"></div>
+  
+  <!-- Back to Top Button -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+  
+  <div id="root"></div>
+  
+  <script>
+    // Loading Screen
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loading-screen').classList.add('hidden');
+      }, 1000);
+    });
+    
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scroll-progress').style.width = scrolled + '%';
+    });
+    
+    // Back to Top Button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Fade in elements on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Observe sections after DOM loads
+    setTimeout(() => {
+      document.querySelectorAll('section, .resume-container > div, .grid > div').forEach(el => {
+        observer.observe(el);
+      });
+    }, 1200);
+    
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+      // Alt + H = Home
+      if (e.altKey && e.key === 'h') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      // Alt + P = Projects
+      if (e.altKey && e.key === 'p') {
+        e.preventDefault();
+        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+      }
+      // Alt + R = Resume
+      if (e.altKey && e.key === 'r') {
+        e.preventDefault();
+        document.getElementById('resume')?.scrollIntoView({ behavior: 'smooth' });
+      }
+      // Alt + C = Contact
+      if (e.altKey && e.key === 'c') {
+        e.preventDefault();
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+  
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

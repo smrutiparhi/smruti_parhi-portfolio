@@ -54,8 +54,8 @@ const App: React.FC = () => {
   const handleDownloadResume = () => {
     // Create a link element to download the PDF
     const link = document.createElement('a');
-    link.href = '/Smruti Ranjan Parhi_Resume (1).pdf';
-    link.download = 'Smruti_Ranjan_Parhi_Resume.pdf';
+    link.href = '/Smruti_ranjan_parhi_CV.pdf';
+    link.download = 'Smruti_Ranjan_Parhi_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
